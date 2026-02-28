@@ -1,0 +1,8 @@
+interface:
+  display_name: "Skill Update"
+  short_description: "Sync and publish local skills safely"
+  default_prompt: "Use $skill-update to sanitize selected skills and push them to my GitLab skills repository."
+
+policy:
+  allow_implicit_invocation: true
+

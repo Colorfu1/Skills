@@ -1,0 +1,8 @@
+interface:
+  display_name: "Job Manager"
+  short_description: "Manage submitted Volc ML tasks"
+  default_prompt: "Use $job-manager to inspect this Volc ML task, fetch status/logs, or cancel it safely."
+
+policy:
+  allow_implicit_invocation: true
+

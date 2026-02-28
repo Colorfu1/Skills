@@ -1,0 +1,8 @@
+interface:
+  display_name: "Model Results Grabber"
+  short_description: "Fetch training/validation metrics"
+  default_prompt: "Use $model-results-grabber to fetch training and validation results for this Volc ML task."
+
+policy:
+  allow_implicit_invocation: true
+

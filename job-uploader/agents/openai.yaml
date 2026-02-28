@@ -1,0 +1,7 @@
+interface:
+  display_name: "Job Uploader"
+  short_description: "Validate and submit job configs safely"
+  default_prompt: "Use $job-uploader to validate this job config and generate the exact submission command."
+
+policy:
+  allow_implicit_invocation: true
