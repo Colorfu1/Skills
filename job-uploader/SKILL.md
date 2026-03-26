@@ -116,7 +116,8 @@ When the user is submitting a Volc custom training task from a YAML:
 
 1. Check environment readiness first (`volc` installed and `volc configure` completed).
 2. Validate the YAML's `Entrypoint` carefully, especially `cd` target and script paths (for example, training scripts under `/mmdet3d`).
-3. Show the exact submit command and ask for confirmation before executing.
-4. Submit with `volc ml_task submit -c <yaml>` (or `-n <new-task-name>` if requested).
-5. If sandbox networking blocks the API, run the submit on the host/outside-sandbox terminal after approval.
-6. Return the submit result (success/error). Do not auto-fetch status/logs unless the user asks.
+3. When `Entrypoint` needs multiple shell commands, keep it on one physical YAML line and separate commands with `\n` escapes rather than literal newlines. Multi-line quoted YAML often folds newlines into spaces and breaks command execution.
+4. Show the exact submit command and ask for confirmation before executing.
+5. Submit with `volc ml_task submit -c <yaml>` (or `-n <new-task-name>` if requested).
+6. If sandbox networking blocks the API, run the submit on the host/outside-sandbox terminal after approval.
+7. Return the submit result (success/error). Do not auto-fetch status/logs unless the user asks.

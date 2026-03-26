@@ -104,6 +104,7 @@ Presentation defaults for this workspace/user preference:
 - Always include a `Pretrain / Provenance` section in model result summaries (even when unresolved)
 - Always include pretrain provenance (`load_from`) in model result summaries when it can be found from remote saved config/logs
 - If provenance is not resolved this turn, print `verified=false` and a short reason instead of omitting the section
+- If the workspace also maintains an experiment registry or visual comparison tree, update those downstream artifacts in the same workflow after new metrics or provenance are resolved.
 
 ## Volc Commands (Result Retrieval)
 
@@ -205,6 +206,7 @@ When `seg_table.txt` / `flow_table.txt` live under an `eval/` directory with man
 - If sandbox networking blocks Volc API, use approved host/outside-sandbox execution when available.
 - Before any SSH-based remote inspection (for example `ssh -p <port> <user>@<host> ...`), ask the user to confirm the SSH tunnel is unblocked/available for this turn.
 - Avoid broad scans of large `eval/` directories in this workspace; read only the exact known result files (`*.html`, `seg_table.txt`, `flow_table.txt`).
+- If regenerating a visual experiment tree as part of the result workflow, verify the rendered image in cropped sections instead of trusting only a thumbnail.
 
 ## References
 

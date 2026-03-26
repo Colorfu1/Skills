@@ -127,12 +127,14 @@ When responding to a job-management request, prefer this order:
 Workspace formatting preference:
 
 - Always list query results explicitly (do not only summarize)
-- Use a pretty table by default (even for a single matched row)
+- Use a readable grouped list or pretty table by default (even for a single matched row)
 - Default list title for local workflow: `Jobs Status (Local Ledger CSV -> volc ml_task get)`
 - Default columns for list output: `JobId | JobName | Status | Workers | ResourceQueueId | Creator | Start/Error`
 - For merged "all jobs" views, include `Source` (`ledger`, `list-only`, `both`) and group same `JobName` retries together when helpful
 - Keep raw JSON optional (include only when helpful or requested)
 - Avoid raw TSV/JSON-only output when presenting results to the user unless they explicitly ask for machine-readable output.
+- When presenting a human-facing status summary, prefer numbered entries grouped by queue or source section, keep the full `JobName`, and show retries or same-name siblings as indented `↳` lines under the primary job.
+- When diff information is available, add a separate status-change section instead of burying it in the main list.
 
 ## Safety Rules
 
@@ -144,6 +146,7 @@ Workspace formatting preference:
 - If `volc ml_task list` opens an interactive UI unexpectedly, rerun with `--output json`.
 - If `volc ml_task list` output is not directly parseable JSON, strip any leading non-JSON lines before the first `[` and then parse.
 - For "all jobs status" in this workspace, do not rely only on the local ledger; merge with `list` results so auto-retry jobs not in local cache are included.
+- Do not truncate `JobName` in human-facing summaries; full names make retries and reruns easier to interpret.
 
 ## References
 
