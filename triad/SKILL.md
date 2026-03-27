@@ -47,6 +47,7 @@ For each task only when the user explicitly says `Triad`:
 7. After the three outputs, wait for the user's response in the same ongoing task/thread.
 8. Do not treat the round as finished, reset, or a new task just because the user speaks after the three outputs.
 9. Only treat the current Triad conversation/task as ended when the user explicitly says `退朝`.
+10. Spawn `[清流]` and `[海瑞]` at most once per ongoing Triad conversation. After they are created, reuse the same reviewer agents for every later round in that same Triad conversation by sending them new input, and close them only after the user explicitly says `退朝`.
 
 ## Rules
 
@@ -65,6 +66,7 @@ For each task only when the user explicitly says `Triad`:
 - The user's final decision is authoritative.
 - If the user does not explicitly say `Triad`, do not use this workflow.
 - User follow-up instructions after the three-role output remain part of the same ongoing context until the user says `退朝`.
+- Do not spawn a fresh `[清流]` or `[海瑞]` for each follow-up turn inside the same Triad conversation. Reuse the existing reviewer agents so they retain role continuity and accumulated context until `退朝`.
 
 ## Output Contract
 
