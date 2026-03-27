@@ -24,7 +24,7 @@ Options:
 Examples:
   publish_skills.sh --src ./skills --repo ./gitlab/skills --skills job-uploader,job-manager
   publish_skills.sh --src ./skills --repo ./gitlab/skills --export ./redacted/skills-public \
-    --owner-from <owner_id> --owner-to owner-tag --commit --push \
+    --owner-from owner-tag --owner-to owner-tag --commit --push \
     --backup-tar /home/mi/codes/workspace/all.tar.gz
 EOF
 }

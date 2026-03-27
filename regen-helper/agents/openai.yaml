@@ -1,0 +1,7 @@
+interface:
+  display_name: "Regen-helper"
+  short_description: "Run docker regen and save lidar debug outputs locally"
+  default_prompt: "Use $Regen-helper to run a regen case in docker, patch the lidar debug save window, and collect the local outputs."
+
+policy:
+  allow_implicit_invocation: true

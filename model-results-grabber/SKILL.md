@@ -104,7 +104,6 @@ Presentation defaults for this workspace/user preference:
 - Always include a `Pretrain / Provenance` section in model result summaries (even when unresolved)
 - Always include pretrain provenance (`load_from`) in model result summaries when it can be found from remote saved config/logs
 - If provenance is not resolved this turn, print `verified=false` and a short reason instead of omitting the section
-- If the workspace also maintains an experiment registry or visual comparison tree, update those downstream artifacts in the same workflow after new metrics or provenance are resolved.
 
 ## Volc Commands (Result Retrieval)
 
@@ -124,17 +123,17 @@ Remote pretrain provenance lookup (workspace pattern, read-only):
 ```bash
 # 1) Inspect saved config copy in remote model dir (prefer *.py, also check *.config)
 ssh -p <port> <user>@<host> \
-  'WD=/<remote_project_path>/centerpoint/pth_dir/<model_run>; \
+  'WD=/remote/store/<project>/pth_dir/<model_run>; \
    find "$WD" -maxdepth 2 -type f \( -name "*.py" -o -name "*.config" \) | sort'
 
 # 2) Extract load_from / resume_from from saved config copy
 ssh -p <port> <user>@<host> \
-  'CFG=/<remote_project_path>/centerpoint/pth_dir/<model_run>/<config_name>.py; \
+  'CFG=/remote/store/<project>/pth_dir/<model_run>/<config_name>.py; \
    grep -nE "^(load_from|resume_from)\s*=|load_from|resume_from" "$CFG"'
 
 # 3) Fallback: grep earliest logs in the same dir
 ssh -p <port> <user>@<host> \
-  'WD=/<remote_project_path>/centerpoint/pth_dir/<model_run>; \
+  'WD=/remote/store/<project>/pth_dir/<model_run>; \
    grep -inE "load_from|resume_from|load-from|resume from" "$WD"/*.log | sed -n "1,80p"'
 ```
 
@@ -204,9 +203,8 @@ When `seg_table.txt` / `flow_table.txt` live under an `eval/` directory with man
 - Prefer read-only commands (`get`, `logs`, `instance list`, `export --config`).
 - If logs are huge, fetch a limited tail first (`-l 100` or `-l 200`) and widen only if needed.
 - If sandbox networking blocks Volc API, use approved host/outside-sandbox execution when available.
-- Before any SSH-based remote inspection (for example `ssh -p <port> <user>@<host> ...`), ask the user to confirm the SSH tunnel is unblocked/available for this turn.
+- Attempt SSH-based remote inspection directly (for example `ssh -p <port> <user>@<host> ...`); if the SSH tunnel is unavailable/broken, report the SSH error and continue with non-SSH fallbacks when possible.
 - Avoid broad scans of large `eval/` directories in this workspace; read only the exact known result files (`*.html`, `seg_table.txt`, `flow_table.txt`).
-- If regenerating a visual experiment tree as part of the result workflow, verify the rendered image in cropped sections instead of trusting only a thumbnail.
 
 ## References
 

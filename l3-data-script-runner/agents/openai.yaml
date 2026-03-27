@@ -1,0 +1,7 @@
+interface:
+  display_name: "L3 Data Script Runner"
+  short_description: "Sync and run ./data scripts on the remote l3_deep repo"
+  default_prompt: "Use $l3-data-script-runner to patch a local data script, sync the remote repo, confirm the exact command, and launch it with nohup."
+
+policy:
+  allow_implicit_invocation: true

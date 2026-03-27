@@ -1,0 +1,7 @@
+interface:
+  display_name: "Todo"
+  short_description: "Manage a repo todo/reminder list (data/job_queue.yaml)"
+  default_prompt: "Use $todo to add, list, update, or delete future-job reminders in data/job_queue.yaml without executing jobs."
+
+policy:
+  allow_implicit_invocation: true

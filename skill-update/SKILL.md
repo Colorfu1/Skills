@@ -32,7 +32,7 @@ Before publishing, scan for:
 - internal URLs/hostnames
 - queue IDs / storage IDs / environment-specific values
 
-For this workspace, common sanitization is replacing `<owner_id>` with `owner-tag` in shared skill docs.
+For this workspace, common sanitization is replacing `owner-tag` with `owner-tag` in shared skill docs.
 
 ### 3. Sync Files into the Git Repo
 
@@ -85,7 +85,7 @@ scripts/publish_skills.sh \
   --repo ./gitlab/skills \
   --export ./redacted/skills-public \
   --skills job-uploader,job-manager \
-  --owner-from <owner_id> \
+  --owner-from owner-tag \
   --owner-to owner-tag \
   --readme ./redacted/skills-public/README.md \
   --commit --push \

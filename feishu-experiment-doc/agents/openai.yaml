@@ -1,0 +1,7 @@
+interface:
+  display_name: "Feishu Experiment Doc"
+  short_description: "Create minimal Feishu experiment records"
+  default_prompt: "Use $feishu-experiment-doc to create or update a concise Feishu experiment doc with the minimal template only."
+
+policy:
+  allow_implicit_invocation: true
